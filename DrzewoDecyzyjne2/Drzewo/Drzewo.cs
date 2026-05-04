@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
-namespace DrzewoDecyzyjne.Drzewo
+namespace DrzewoDecyzyjne2.Drzewo
 {
     internal class Drzewo
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DrzewoDecyzyjne
+namespace DrzewoDecyzyjne2
 {
     internal class CV
     {

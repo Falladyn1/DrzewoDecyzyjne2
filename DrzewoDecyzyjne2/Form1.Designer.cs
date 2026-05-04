@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
             btnOpenFile = new Button();
             textBoxLoc = new TextBox();
             labelOpenFile = new Label();
@@ -180,14 +180,14 @@
             // dataGridView1
             // 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { lp, Cecha1, Cecha2, Cecha3, Cecha4, Gatunek });
             dataGridView1.Location = new Point(340, 22);
@@ -209,8 +209,8 @@
             // 
             // Cecha1
             // 
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Cecha1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Cecha1.DefaultCellStyle = dataGridViewCellStyle8;
             Cecha1.HeaderText = "Cecha1";
             Cecha1.MinimumWidth = 6;
             Cecha1.Name = "Cecha1";
@@ -218,8 +218,8 @@
             // 
             // Cecha2
             // 
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Cecha2.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Cecha2.DefaultCellStyle = dataGridViewCellStyle9;
             Cecha2.HeaderText = "Cecha2";
             Cecha2.MinimumWidth = 6;
             Cecha2.Name = "Cecha2";
@@ -227,8 +227,8 @@
             // 
             // Cecha3
             // 
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Cecha3.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Cecha3.DefaultCellStyle = dataGridViewCellStyle10;
             Cecha3.HeaderText = "Cecha3";
             Cecha3.MinimumWidth = 6;
             Cecha3.Name = "Cecha3";
@@ -236,8 +236,8 @@
             // 
             // Cecha4
             // 
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Cecha4.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Cecha4.DefaultCellStyle = dataGridViewCellStyle11;
             Cecha4.HeaderText = "Cecha4";
             Cecha4.MinimumWidth = 6;
             Cecha4.Name = "Cecha4";
@@ -245,8 +245,8 @@
             // 
             // Gatunek
             // 
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Gatunek.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Gatunek.DefaultCellStyle = dataGridViewCellStyle12;
             Gatunek.HeaderText = "Gatunek";
             Gatunek.MinimumWidth = 6;
             Gatunek.Name = "Gatunek";
@@ -260,6 +260,7 @@
             btnBuildTree.TabIndex = 5;
             btnBuildTree.Text = "BUDUJ DRZEWO";
             btnBuildTree.UseVisualStyleBackColor = true;
+            btnBuildTree.Click += btnBuildTree_Click;
             // 
             // Form1
             // 

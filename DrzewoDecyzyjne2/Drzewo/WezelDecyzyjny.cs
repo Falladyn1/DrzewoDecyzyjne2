@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DrzewoDecyzyjne.Drzewo
+namespace DrzewoDecyzyjne2.Drzewo
 {
     internal class WezelDecyzyjny : Wezel
     {

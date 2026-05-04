@@ -3,7 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Collections.Generic;
 
-namespace DrzewoDecyzyjne
+namespace DrzewoDecyzyjne2
 {
     internal class ZbiorDanych
     {
