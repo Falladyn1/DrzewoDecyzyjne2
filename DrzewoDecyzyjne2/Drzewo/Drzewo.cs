@@ -220,10 +220,10 @@ namespace DrzewoDecyzyjne2.Drzewo
             return "Drzewo nie zostało jeszcze zbudowane!";
         }
 
-        public void wypiszDrzewo()
-        {
-            if (korzen != null) korzen.Wypisz("", 0);
-        }
+        //public void wypiszDrzewo()
+        //{
+        //    if (korzen != null) korzen.Wypisz("", 0);
+        //}
 
     }
 }

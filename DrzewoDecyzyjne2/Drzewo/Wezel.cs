@@ -6,7 +6,7 @@ namespace DrzewoDecyzyjne2.Drzewo
     {
         public int[] Index;
 
-        public abstract void Wypisz(string wciecie, int poziom);
+        //public abstract void Wypisz(string wciecie, int poziom);
 
         public abstract string Test(double[] wektor);
     }

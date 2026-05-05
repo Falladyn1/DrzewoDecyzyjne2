@@ -12,10 +12,10 @@ namespace DrzewoDecyzyjne2.Drzewo
             Index = indeksy;
         }
 
-        public override void Wypisz(string wciecie, int poziom)
-        {
-            Console.WriteLine($"{wciecie}[Poziom {poziom}] LISC: {etykieta} (Liczba wierszy: {Index.Length})");
-        }
+        //public override void Wypisz(string wciecie, int poziom)
+        //{
+        //    Console.WriteLine($"{wciecie}[Poziom {poziom}] LISC: {etykieta} (Liczba wierszy: {Index.Length})");
+        //}
         
 
         public override string Test(double[] wektor)

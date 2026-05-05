@@ -18,12 +18,12 @@ namespace DrzewoDecyzyjne2.Drzewo
             Index = indeksy;
         }
 
-        public override void Wypisz(string wciecie, int poziom)
-        {
-            Console.WriteLine($"{wciecie}[Poziom {poziom}] Czy cecha {cecha} <= {prog}?");
-            lewy.Wypisz(wciecie + "  |", poziom + 1);
-            prawy.Wypisz(wciecie + "  |", poziom + 1);
-        }
+        //public override void Wypisz(string wciecie, int poziom)
+        //{
+        //    Console.WriteLine($"{wciecie}[Poziom {poziom}] Czy cecha {cecha} <= {prog}?");
+        //    lewy.Wypisz(wciecie + "  |", poziom + 1);
+        //    prawy.Wypisz(wciecie + "  |", poziom + 1);
+        //}
 
         public override string Test(double[] wektor)
         {
