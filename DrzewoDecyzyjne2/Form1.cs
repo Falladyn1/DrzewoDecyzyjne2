@@ -1,5 +1,8 @@
-using DrzewoDecyzyjne2;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
+using DrzewoDecyzyjne2.Drzewo;
 
 namespace DrzewoDecyzyjne2
 {
@@ -14,14 +17,37 @@ namespace DrzewoDecyzyjne2
 
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
-            var fileContent = string.Empty;
             DialogResult res = openFileDialog1.ShowDialog();
-            filePath = openFileDialog1.FileName;
 
             if (res == DialogResult.OK)
             {
-                textBoxLoc.Text = openFileDialog1.FileName;
+                filePath = openFileDialog1.FileName;
+                textBoxLoc.Text = filePath;
                 labelOpenFile.Text = "Za³adowany plik";
+
+                try
+                {
+                    ZbiorDanych zbior = new ZbiorDanych();
+                    zbior.wczytajDane(filePath);
+
+                    dataGridView1.Rows.Clear();
+
+                    for (int i = 0; i < zbior.LiczbaWierszy; i++)
+                    {
+                        dataGridView1.Rows.Add(
+                            i + 1,
+                            zbior[i, 0],
+                            zbior[i, 1],
+                            zbior[i, 2],
+                            zbior[i, 3],
+                            zbior.pobierzEtykiete(i)
+                        );
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Nie uda³o siê poprawnie wczytaæ pliku do tabeli:\n{ex.Message}", "B³¹d odczytu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -43,37 +69,37 @@ namespace DrzewoDecyzyjne2
                 return;
             }
 
-            int liczbaPodzialow = (int)numericUpDownPartion.Value;
-            int glebokosc = (int)numericUpDownDepth.Value;
-            bool sposobPodzialu = radioBtnGini.Checked;
+            int countPartions = (int)numericUpDownPartion.Value;
+            int depth = (int)numericUpDownDepth.Value;
+            bool partionWay = radioBtnGini.Checked;
 
             try
             {
                 ZbiorDanych zbior = new ZbiorDanych();
                 zbior.wczytajDane(filePath);
 
-                CV validation = new CV(liczbaPodzialow, zbior.LiczbaWierszy);
+                CV validation = new CV(countPartions, zbior.LiczbaWierszy);
                 var dataIndex = validation.makeCV();
 
                 dataGridView1.Rows.Clear();
-                int poprawne = 0;
-                int Tests = 0;
+                int correctClasificied = 0;
+                int allTests = 0;
 
                 Func<ZbiorDanych, int[], (int, double)> metodaPodzialu = null;
 
-                if (sposobPodzialu == false)
+                if (partionWay == false)
                 {
                     metodaPodzialu = PodzialEntropia;
                 }
 
-                foreach (var (trainIndex, testIndex) in dataIndex)
+                foreach (var (trainIndexes, testIndexes) in dataIndex)
                 {
-                    DrzewoDecyzyjne2.Drzewo.Drzewo drzewo = new DrzewoDecyzyjne2.Drzewo.Drzewo(glebokosc, metodaPodzialu);
-                    drzewo.utworzDrzewo(zbior, trainIndex);
+                    DrzewoDecyzyjne2.Drzewo.Drzewo drzewo = new DrzewoDecyzyjne2.Drzewo.Drzewo(depth, metodaPodzialu);
+                    drzewo.utworzDrzewo(zbior, trainIndexes);
 
-                    foreach (int idx in testIndex)
+                    foreach (int idx in testIndexes)
                     {
-                        Tests++;
+                        allTests++;
 
                         double[] cechy = new double[zbior.LiczbaCech];
                         for (int c = 0; c < zbior.LiczbaCech; c++)
@@ -86,26 +112,24 @@ namespace DrzewoDecyzyjne2
 
                         string status = (oczekiwanaKlasa == przewidzianaKlasa) ? "Trafione" : "Pud³o";
                         if (status == "Trafione")
-                            poprawne++;
-                        int rowIndex = dataGridView1.Rows.Add(Tests, cechy[0], cechy[1], cechy[2], cechy[3], oczekiwanaKlasa, przewidzianaKlasa, status);
+                            correctClasificied++;
+
+                        int rowIndex = dataGridView1.Rows.Add(allTests, cechy[0], cechy[1], cechy[2], cechy[3], oczekiwanaKlasa, przewidzianaKlasa, status);
 
                         if (status == "Trafione")
-                            dataGridView1.Rows[rowIndex].DefaultCellStyle.BackColor = System.Drawing.Color.LightGreen;
+                            dataGridView1.Rows[rowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
                         else
-                            dataGridView1.Rows[rowIndex].DefaultCellStyle.BackColor = System.Drawing.Color.Salmon;
+                            dataGridView1.Rows[rowIndex].DefaultCellStyle.BackColor = Color.Salmon;
                     }
                 }
 
-                double procentDokladnosci = ((double)poprawne / Tests) * 100;
-                MessageBox.Show($"Zakoñczono! Dok³adnoœæ: {procentDokladnosci:F2}%\nPoprawnie sklasyfikowano: {poprawne} z {Tests} irysów.", "Wyniki Cross-Walidacji", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                double procentDokladnosci = ((double)correctClasificied / allTests) * 100;
+                MessageBox.Show($"Zakoñczono! Dok³adnoœæ: {procentDokladnosci:F2}%\nPoprawnie sklasyfikowano: {correctClasificied} z {allTests} irysów.", "Wyniki Cross-Walidacji", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Coœ posz³o nie tak przy budowie drzewa:\n{ex.Message}", "B³¹d krytyczny", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
         }
 
         private double ObliczEntropie(int[] indeksy, ZbiorDanych dane)
